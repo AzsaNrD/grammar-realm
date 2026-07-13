@@ -1,26 +1,77 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Palet parchment/earthy sesuai gaya aset: ochre - moss - rust - ink navy */
+@theme {
+  --color-parchment: #f4e8cf;
+  --color-parchment-dark: #e3cfa6;
+  --color-parchment-deep: #c9ac77;
+  --color-ink: #232f3d;
+  --color-ochre: #c8912f;
+  --color-moss: #5f7247;
+  --color-rust: #9c4a2a;
+  --color-gold: #e0b04a;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Georgia, "Times New Roman", serif;
+  background: var(--color-ink);
+}
+
+/* Sprite pixel art tetap tajam saat diperbesar */
+.pixelated {
+  image-rendering: pixelated;
+}
+
+/* Angka damage melayang */
+@keyframes float-dmg {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -60px) scale(1.4);
+  }
+}
+.animate-float-dmg {
+  animation: float-dmg 0.9s ease-out forwards;
+  pointer-events: none;
+}
+
+/* Efek kena serang */
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-8px);
+  }
+  40% {
+    transform: translateX(8px);
+  }
+  60% {
+    transform: translateX(-5px);
+  }
+  80% {
+    transform: translateX(5px);
+  }
+}
+.animate-shake {
+  animation: shake 0.4s;
+}
+
+/* Kemunculan panel/banner */
+@keyframes pop-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.animate-pop-in {
+  animation: pop-in 0.3s ease-out;
 }

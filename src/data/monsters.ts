@@ -1,0 +1,77 @@
+import type { Monster } from "@/lib/types";
+
+export const MONSTERS: Record<string, Monster> = {
+  snakeMonster: {
+    id: "snakeMonster",
+    name: "Snake Monster",
+    region: "region1",
+    tier: "basic",
+    hp: 40,
+    atk: 8,
+    fameReward: 15,
+    sprite: "/assets/snake-monster.png",
+  },
+  spiritMonster: {
+    id: "spiritMonster",
+    name: "Spirit Monster",
+    region: "region1",
+    tier: "elite",
+    hp: 60,
+    atk: 12,
+    fameReward: 25,
+    sprite: "/assets/spirit-monster.png",
+  },
+  wraithMonster: {
+    id: "wraithMonster",
+    name: "Wraith Monster",
+    region: "region2",
+    tier: "basic",
+    hp: 80,
+    atk: 14,
+    fameReward: 35,
+    sprite: "/assets/wraith-monster.png",
+  },
+  golemMonster: {
+    id: "golemMonster",
+    name: "Golem Monster",
+    region: "region2",
+    tier: "elite",
+    hp: 110,
+    atk: 18,
+    fameReward: 50,
+    sprite: "/assets/golem-monster.png",
+  },
+  blobMonster: {
+    id: "blobMonster",
+    name: "Blob Monster",
+    region: "region3",
+    tier: "basic",
+    hp: 130,
+    atk: 20,
+    fameReward: 65,
+    sprite: "/assets/blob-monster.png",
+  },
+  armoredGolem: {
+    id: "armoredGolem",
+    name: "Armored Golem",
+    region: "region3",
+    tier: "elite",
+    hp: 170,
+    atk: 26,
+    fameReward: 85,
+    sprite: "/assets/armored-golem.png",
+  },
+  finalBoss: {
+    id: "finalBoss",
+    name: "The Grammar Overlord",
+    region: "regionFinal",
+    tier: "boss",
+    hp: 400,
+    atk: 35,
+    fameReward: 300,
+    sprite: "/assets/final-boss.png",
+  },
+};
+
+/** HP tiap fase Final Boss (total 400, 3 fase). */
+export const BOSS_PHASE_HP = [134, 133, 133];

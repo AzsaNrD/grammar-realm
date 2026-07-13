@@ -1,36 +1,61 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Grammar Realm | TOEFL Grammar RPG
 
-## Getting Started
+Web game edukasi 2D RPG untuk tugas Bahasa Inggris Bisnis 2. Pemain berkelana
+melewati 3 wilayah + 1 zona final boss, mengalahkan monster dengan cara
+menjawab soal grammar TOEFL (soal berbahasa Inggris, UI & narasi berbahasa
+Indonesia), naik level lewat battle maupun Ujian Guild, dan mengumpulkan
+5 item langka.
 
-First, run the development server:
+Dibangun dengan **Next.js (App Router) + TypeScript + Tailwind CSS**,
+state global memakai React Context + `useReducer`, progress tersimpan di
+`localStorage`.
+
+## Cara Menjalankan
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Lalu buka http://localhost:3000
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Untuk build produksi:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm start
+```
 
-## Learn More
+## Fitur Utama
 
-To learn more about Next.js, take a look at the following resources:
+- **Battle "Shield Break via Soal"** | jawaban benar memberi damage sebesar
+  ATK; jawaban salah membuat monster menyerang balik + menampilkan pembahasan.
+- **Peta terbuka** | 4 wilayah bisa diakses sejak awal, level rekomendasi
+  hanya sebagai info.
+- **Dua jalur naik level** | EXP dari Fame battle, atau lulus Ujian Guild
+  (10 soal acak, benar ≥ 8 → naik 1 level instan; gagal → terkunci sampai
+  menang 1 battle).
+- **Final Boss 3 fase** | tiap fase memakai pool soal dari materi berbeda.
+- **5 item langka** dengan efek pasif, masing-masing hanya bisa drop 1 kali.
+- **Guide naratif** bergaya santai muncul di momen-momen penting.
+- **BGM looping** | "Journey of a Lifetime ~ Frieren Main Theme" di
+  lobby/eksplorasi dan "Knife to the Throat" saat battle, dengan tombol
+  mute di pojok kanan bawah (file di `public/audio/`).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Struktur Kode
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+| Folder            | Isi                                                                                                                      |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------- |
+| `src/app/`        | Entry Next.js (layout, page, styling global)                                                                             |
+| `src/components/` | Semua screen (Map, Region, Battle, GuildExam, Result, Ending, Intro) + komponen reusable (StatusPanel, DialogueBox, Bar) |
+| `src/context/`    | `GameContext.tsx`                                                                                                        | reducer game state + persistensi localStorage |
+| `src/data/`       | Data statis: monster, wilayah, item, dialog Guide, dan bank soal (124 soal)                                              |
+| `src/lib/`        | Tipe TypeScript + utilitas (Fisher-Yates shuffle, kalkulasi damage/drop)                                                 |
+| `public/assets/`  | Aset pixel art (karakter, monster, wilayah, item)                                                                        |
 
-## Deploy on Vercel
+## Materi Grammar per Wilayah
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. **Hutan Awal** | Sentences with One & Multiple Clauses (Connectors)
+2. **Reruntuhan** | Reduced Clauses & Inversion
+3. **Kota** | Subject-Verb Agreement & Parallel Structure (lokasi Guild Hall)
+4. **Puncak** | Nouns/Pronouns/Word Choice + gabungan semua materi (Final Boss)
